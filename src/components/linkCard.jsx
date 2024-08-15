@@ -40,7 +40,7 @@ const LinkCard = ({ url, fetchUrls }) => {
           {url?.title}{" "}
         </span>
         <span className="text-2xl text-blue-400 font-bold hover:underline cursor-pointer">
-          https://scissor.vercel.app/
+          https://scissor-9s9w.vercel.app/
           {url?.custom_url ? url?.custom_url : url.short_url}
         </span>
         <span className="flex items-center gap-1 hover:underline cursor-pointer">
@@ -56,7 +56,7 @@ const LinkCard = ({ url, fetchUrls }) => {
           variant="ghost"
           onClick={() =>
             navigator.clipboard.writeText(
-              `https://scissor.vercel.com/${url?.short_url}`
+              `https://scissor-9s9w.vercel.com/${url?.short_url}`
             )
           }
         >
