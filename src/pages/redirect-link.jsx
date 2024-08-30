@@ -1,40 +1,41 @@
-import { storeClicks } from "@/db/apiClicks";
-import { getLongUrl } from "@/db/apiUrls";
-import useFetch from "@/hooks/use-fetch";
 import { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { BarLoader } from "react-spinners";
+import { storeClicks } from "@/db/apiClicks";
+import { getLongUrl } from "@/db/apiUrls";
+import useFetch from "@/hooks/use-fetch";
 
 const RedirectLink = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
+  // Fetch the long URL based on the ID
   const { loading, data, error, fn } = useFetch(getLongUrl, id);
-
+  
+  // Fetch click stats after the long URL is fetched
   const { loading: loadingStats, fn: fnStats } = useFetch(storeClicks, {
     id: data?.id,
     originalUrl: data?.original_url,
   });
 
+  // Fetch long URL when ID changes
   useEffect(() => {
     fn();
-  }, []);
+  }, [id, fn]);
 
+  // Handle click stats and redirection once data is available and loading is complete
   useEffect(() => {
     if (!loading && data) {
       fnStats();
       if (data.original_url) {
-        window.location.href = data.original_url;
+        navigate(data.original_url, { replace: true });
+      } else {
+        console.error("No original_url found in data");
       }
     }
-  }, [loading, data]);
+  }, [loading, data, fnStats, navigate]);
 
-  useEffect(() => {
-    if (error) {
-      navigate("/404");
-    }
-  }, [error, navigate]);
-
+  // Display loading spinner while fetching data
   if (loading || loadingStats) {
     return (
       <>
@@ -43,13 +44,11 @@ const RedirectLink = () => {
         Redirecting...
       </>
     );
-  } else {
-    return (
-      <h1 className="mt-12 text-xl sm:text-2xl text-center font-extralight text-gray-400">
-        Error fetching URL or it may not exist. <br /> Please login and try
-        again.
-      </h1>
-    );
+  }
+
+  // Display error message if there was an issue fetching data
+  if (error) {
+    return <div>Error occurred while fetching data.</div>;
   }
 
   return null;
