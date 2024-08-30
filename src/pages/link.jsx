@@ -87,7 +87,7 @@ const Link = () => {
 
   const copyToClipboard = () => {
     navigator.clipboard
-      .writeText(`https://scissor.vercel.app/${url?.short_url}`)
+      .writeText(`https://scissor-9s9w.vercel.app/${url?.short_url}`)
       .then(() => {
         toast.success("Copied to clipboard", {
           position: "bottom-right",
@@ -133,12 +133,12 @@ const Link = () => {
             {url?.title}
           </span>
           <a
-            href={`https://scissor.vercel.app/${link}`}
+            href={`https://scissor-9s9w.vercel.app/${link}`}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center text-2xl sm:text-4xl text-blue-400 font-bold hover:underline cursor-pointer"
           >
-            {`https://scissor.vercel.app/${link}`}
+            {`https://scissor-9s9w.vercel.app/${link}`}
           </a>
           <a
             href={url?.original_url}
