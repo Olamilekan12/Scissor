@@ -21,7 +21,7 @@ const LinkCard = ({ url, fetchUrls }) => {
 
     // Trigger the download by simulating a click event
     anchor.click();
-    document.body.removeeChild(anchor);
+    document.body.removeChild(anchor);
   };
 
   const { loading: loadingDelete, fn: fnDelete } = useFetch(deleteUrl, url?.id);
