@@ -103,12 +103,46 @@ export async function createUrl(
   return data;
 }
 
-export async function deleteUrl(id) {
-  const { data, error } = await supabase.from("urls").delete().eq("id", id);
+
+
+export const deleteUrl = async (linkId) => {
+  const { data, error } = await supabase
+    .from('urls')
+    .delete()
+    .eq('id', id);
 
   if (error) {
-    console.log(error.message);
-    throw new Error("Error deleting URLs");
+    console.error('Error deleting link:', error);
+  } else {
+    console.log('Link deleted successfully:', data);
   }
-  return data;
+};
+
+
+await deleteUrl('id');
+return data;
+
+
+
+
+
+
+
+//export async function deleteUrl(id) {
+  //const { data, error } = await 
+
+//supabase.from("urls").delete().eq("id", id);
+
+ // if (error) {
+    //console.log(error.message);
+    //throw new Error("Error deleting URLs");
+  //}
+ // return data;
+
+
+
+
+
 }
+
+
