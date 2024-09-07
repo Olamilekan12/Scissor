@@ -40,15 +40,13 @@ const LinkCard = ({ url, fetchUrls }) => {
           {url?.title}{" "}
         </span>
         <span className="text-2xl text-blue-400 font-bold hover:underline cursor-pointer">
-          https://scissor-9s9w.vercel.app/
-          {url?.custom_url ? url?.custom_url : url.short_url}
+          https://scissor-9s9w.vercel.app/{url?.custom_url ? url?.custom_url : url.short_url}
         </span>
         <span className="flex items-center gap-1 hover:underline cursor-pointer">
           {url?.original_url}
         </span>
-        <span className="fles items-end font-extralight text-sm flex-1">
-          {new Date(url?.created_at).toLocaleString()}
-        </span>
+        <span className="flex items-end font-extralight text-sm flex-1">
+          {new Date(url?.created_at).toLocaleString()}</span>
       </Link>
 
       <div className="flex gap-2">

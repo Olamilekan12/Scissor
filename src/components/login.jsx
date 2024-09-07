@@ -44,7 +44,6 @@ const Login = () => {
     console.log(data);
     if (error === null && data) {
       navigate(`/dashboard?${longlink ? `createNew=${longlink}` : ""}`);
-
       fetchUser();
     }
   }, [data, error]);

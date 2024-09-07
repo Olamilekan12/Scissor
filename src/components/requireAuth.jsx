@@ -1,4 +1,4 @@
-// require authntication to return user to dashboard
+// require authentication to return user to dashboard
 
 import { UrlState } from "@/context";
 import React, { useEffect } from "react";

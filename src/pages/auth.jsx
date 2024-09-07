@@ -8,14 +8,14 @@ import { BeatLoader } from "react-spinners";
 
 const Auth = () => {
   const [searchParams] = useSearchParams();
-  const longlink = searchParams.get("createNew");
+  const longLink = searchParams.get("createNew");
   const navigate = useNavigate();
 
   const { isAuthenticated, loading } = UrlState();
 
   useEffect(() => {
     if (isAuthenticated && !loading) {
-      navigate(`/dashboard?${longlink ? `createNew=${longlink}` : ""}`);
+      navigate(`/dashboard?${longLink ? `createNew=${longLink}` : ""}`);
     }
   }, [isAuthenticated, loading]);
 
@@ -29,7 +29,7 @@ const Auth = () => {
 
   return (
     <div className="flex flex-col items-center justify-center mt-16 sm:mt-2 gap-10 ">
-      {longlink ? (
+      {longLink ? (
         <h1 className="text-4xl font-extrabold">
           Hold up! Let's login first...
         </h1>

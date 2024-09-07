@@ -30,37 +30,18 @@ export async function getUrl({ id, user_id }) {
 }
 
 export async function getLongUrl(id) {
-  try {
-    const { data: shortLinkData, error: shortLinkError } = await supabase
-      .from("urls")
-      .select("id, original_url")
-      // or(`short_url.eq.${id}, custom_url.eq.${id}`)
-      .eq("short_url", id)
-      .single();
+  const { data, error } = await supabase
+    .from("urls")
+    .select("id, original_url")
+    .or(`short_url.eq.${id},custom_url.eq.${id}`)
+    .single();
 
-    if (shortLinkError && shortLinkError.code === "PGRST116") {
-      // If no match found, try custom_url
-      ({ data: shortLinkData, error: shortLinkError } = await supabase
-        .from("urls")
-        .select("id, original_url")
-        .eq("custom_url", id)
-        .single());
-    }
-    if (shortLinkError) {
-      if (shortLinkError.code === "PGRST116") {
-        console.log("No matching URL found");
-        return null;
-      } else {
-        console.error("Error fetching short link:", shortLinkError);
-        throw shortLinkError;
-      }
-    }
-
-    return shortLinkData;
-  } catch (error) {
-    console.error("Unexpected error in getLongUrl:", error);
-    throw error;
+  if (error) {
+    console.error(error.message);
+    throw new Error("Error fetching short link");
   }
+
+  return data;
 }
 
 export async function createUrl(
@@ -103,46 +84,12 @@ export async function createUrl(
   return data;
 }
 
-
-
-export const deleteUrl = async (linkId) => {
-  const { data, error } = await supabase
-    .from('urls')
-    .delete()
-    .eq('id', id);
+export async function deleteUrl(id) {
+  const { data, error } = await supabase.from("urls").delete().eq("id", id);
 
   if (error) {
-    console.error('Error deleting link:', error);
-  } else {
-    console.log('Link deleted successfully:', data);
+    console.log(error.message);
+    throw new Error("Error deleting URLs");
   }
-};
-
-
-await deleteUrl('id');
-return data;
-
-
-
-
-
-
-
-//export async function deleteUrl(id) {
-  //const { data, error } = await 
-
-//supabase.from("urls").delete().eq("id", id);
-
- // if (error) {
-    //console.log(error.message);
-    //throw new Error("Error deleting URLs");
-  //}
- // return data;
-
-
-
-
-
+  return data;
 }
-
-

@@ -10,7 +10,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { BarLoader, BeatLoader } from "react-spinners";
 import { toast } from "react-toastify";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import Device from "@/components/deviceStats";
+import DeviceStats from "@/components/deviceStats";
 import Location from "@/components/locationStats";
 
 const Link = () => {
@@ -138,7 +138,7 @@ const Link = () => {
             rel="noopener noreferrer"
             className="flex items-center text-2xl sm:text-4xl text-blue-400 font-bold hover:underline cursor-pointer"
           >
-            {`https://scissor-9s9w.vercel.app/${link}`}
+            https://scissor-9s9w.vercel.app/{link}
           </a>
           <a
             href={url?.original_url}
@@ -162,13 +162,20 @@ const Link = () => {
             <Button variant="ghost" onClick={copyToClipboard}>
               <Copy className="text-white hover:text-gray-400" />
             </Button>
-            <Button variant="ghost" onClick={() => fnDelete()}>
+            <Button
+              variant="ghost"
+              onClick={() =>
+                fnDelete().then(() => {
+                  navigate("/dashboard");
+                })
+              }
+              disable={loadingDelete}
+            >
               {loadingDelete ? (
-                <BeatLoader size={10} color="white" />
+                <BeatLoader size={5} color="white" />
               ) : (
-                <Trash className="text-red-500 hover:text-red-400" />
+                <Trash />
               )}
-              ;
             </Button>
           </div>
           <img
