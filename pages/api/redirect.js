@@ -1,7 +1,9 @@
 import { supabase } from '../../src/db/supabase';
 
+export default function handler(req, res) {
+  res.status(200).json({ message: 'API route reached', slug: req.query.slug });
 
-export default async function handler(req, res) {
+
   const { slug } = req.query;
 
   // Fetch the original URL from Supabase using the slug
