@@ -1,11 +1,10 @@
 
 __Scissor__
 
-_URL Shortener & QR Code Generator_
-
-_A Final Year Project by Olamilekan Ogunbade_
-
-As a final year student in the Altschoolafrica Frontend Engineering program, I built Scissor to demonstrate my skills in frontend development. This project showcases my ability to design and build practical applications.
+**__URL Shortener & QR Code Generator__
+**
+**A Final Year Project by Olamilekan Ogunbade**
+As a final year student in the **Altschoolafrica Frontend Engineering program**, I built Scissor to demonstrate my skills in frontend software development. This project showcases my ability to design and build practical applications.
 
 __Features__
 
@@ -16,10 +15,10 @@ __Features__
 
 __Tech Stack__
 
-- Frontend: React with Vite
-- Backend: Supabase
+- **Frontend: React with Vite**
+- **Backend: Supabase**
 - QR Code Generation: react-qr-code-logo package
-- UI: shadcn-ui tailwind css
+- UI: shadcn-ui tailwind css**
 
 __Getting Started__
 
