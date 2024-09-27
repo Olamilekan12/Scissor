@@ -1,5 +1,5 @@
 
-__Scissor__
+**Scissor**
 
 **__URL Shortener & QR Code Generator__
 **
@@ -17,8 +17,8 @@ __Tech Stack__
 
 - **Frontend: React with Vite**
 - **Backend: Supabase**
-- QR Code Generation: react-qr-code-logo package
-- UI: shadcn-ui tailwind css**
+- **QR Code Generation: react-qr-code-logo package**
+- **UI: shadcn-ui tailwind css**
 
 __Getting Started__
 
